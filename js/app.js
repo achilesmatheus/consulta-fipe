@@ -35,13 +35,15 @@ function init() {
     selectElement.innerHTML = dataAsString;
   };
 
-  const handleEventListener = (element, eventType) =>
+  const handleEventListener = (eventType, element) =>
     callback => element.addEventListener(eventType, callback)
 
-  const vehicleType = handleEventListener(selectVehicleType, 'click')
-  const vehicleBrand = handleEventListener(selectVehicleBrand, 'click')
-  const vehicleModel = handleEventListener(selectVehicleBrand, 'click')
-  const vehicleYear = handleEventListener(selectVehicleBrand, 'click')
+  const handleClick = handleEventListener.bind(null, 'click')
+
+  const vehicleType = handleClick(selectVehicleType)
+  const vehicleBrand = handleClick(selectVehicleBrand)
+  const vehicleModel = handleClick(selectVehicleBrand)
+  const vehicleYear = handleClick(selectVehicleBrand)
 
   const getBrands = event => {
     const url = makeURL('brands', {
